@@ -97,8 +97,9 @@ class PopcornTV:
     def getSmilUrl(self, pageUrl):
         htmlData = urllib2.urlopen(pageUrl).read()
         
-        match=re.compile('url: escape\("(.+?)"\)').findall(htmlData)
+        match=re.compile('src="/player/ova.asp\?q=(.+?)"').findall(htmlData)
         url = match[0]
+        url = url.replace("xxxzzz", "&")
 
         return url
         
