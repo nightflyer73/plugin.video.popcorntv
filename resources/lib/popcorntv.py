@@ -24,7 +24,7 @@ class PopcornTV:
         links = tree.find("div", "nav1").findAll('a')
         categories = []
         # In queste categorie non ci sono video
-        avoid_categories = ["Home", "GenteTV"]
+        avoid_categories = ["Home", "News"]
         for link in links:
             category = {}
             category["title"] = link.contents[0].strip()
