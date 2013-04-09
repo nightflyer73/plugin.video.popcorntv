@@ -1,3 +1,6 @@
+[B]1.0.2[/B]
+- filtered out the "News" category (previously called "GenteTV") because it does not contains videos
+
 [B]1.0.1[/B]
 - updated page parsing because of upstream HTML changes
 
