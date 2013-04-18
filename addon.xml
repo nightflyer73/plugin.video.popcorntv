@@ -12,9 +12,13 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
+    <language>it</language>
     <platform>all</platform>
-    <summary>La web TV On-Demand, legale e gratuita. Cinema, Musica, Sport e tanto di più</summary>
-    <description>La Over the Top TV, completamente gratuita, in streaming on demand, di film, video musicali, avvenimenti sportivi, e numerosi altri contenuti di una Library in continuo aggiornamento.</description>
+    <summary lang="it">La web TV On-Demand, legale e gratuita. Cinema, Musica, Sport e tanto di più</summary>
+    <description lang="it">La Over the Top TV, completamente gratuita, in streaming on demand, di film, video musicali, avvenimenti sportivi, e numerosi altri contenuti di una Library in continuo aggiornamento.</description>
+    <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
+    <forum>http://forum.xbmc.org/showthread.php?tid=155915</forum>
+    <website>https://github.com/nightflyer73/plugin.video.popcorntv</website>
+    <source>https://github.com/nightflyer73/plugin.video.popcorntv</source>
   </extension>
 </addon>
-
