@@ -24,14 +24,14 @@ class PopcornTV:
         
         links = tree.find("div", "nav1").findAll('a')
         categories = []
-        # In queste categorie non ci sono video
-        avoid_categories = ["Home", "Videostrillo", "Fox TV", "News"]
+        # There are no video in these in these categories
+        avoid_categories = ["Home", "Videostrillo", "News"]
         for link in links:
             category = {}
-            category["title"] = link.contents[0].strip()
+            category["title"] = link.text.strip()
             if category["title"] in avoid_categories:
                 continue
-            category["url"] = link["href"]                
+            category["url"] = link["href"]
             categories.append(category)
        
         return categories
@@ -39,15 +39,23 @@ class PopcornTV:
     def getSubCategories(self, pageUrl):
         data = urllib2.urlopen(pageUrl).read()
         htmlTree = BeautifulSoup(data, convertEntities=BeautifulSoup.HTML_ENTITIES)
+        urlParsed = urlparse.urlsplit(pageUrl)
+        urlSite = urlParsed.scheme + "://" + urlParsed.netloc
 
         subcategories = []
         links = htmlTree.find("div", "nav2").findAll("a")
+        # There are no video in these subcategories
+        avoid_subcategories = ["News"]
         for link in links:
             subcategory = {}
+            subcategory["title"] = link.text.strip()
+            if subcategory["title"] in avoid_subcategories:
+                continue
             subcategory["url"] = link["href"]
-            subcategory["title"] = link.contents[0].strip()
+            if not subcategory["url"].startswith("http"):
+                subcategory["url"] = urlSite + subcategory["url"]
             subcategories.append(subcategory)
-       
+            
         return subcategories
         
     def getVideoBySubCategories(self, pageUrl):
@@ -74,7 +82,10 @@ class PopcornTV:
             video = {}
             image_tag = item.find("img")
             video["url"] = item.find("a")["href"]
-            video["thumb"] = image_tag["src"]
+            try:
+                video["thumb"] = image_tag["data-src"]
+            except KeyError:
+                video["thumb"] = image_tag["src"]
             video["title"] = image_tag["alt"]
             videos.append(video)
         
@@ -87,8 +98,14 @@ class PopcornTV:
                 image = item.find("div", "trailers-image")
                 image_tag = image.find("img")
                 video["url"] = image.find("a")["href"]
-                video["thumb"] = image_tag["src"]
+                try:
+                    video["thumb"] = image_tag["data-src"]
+                except KeyError:
+                    video["thumb"] = image_tag["src"]
                 video["title"] = image_tag["alt"]
+                vietato = item.find("div", "overlay_vietato")
+                if vietato != None:
+                    video["title"] = video["title"] + " [" + vietato.text.strip() + "]"
                 # don't insert duplicate items
                 if video not in videos:
                     videos.append(video)
@@ -105,7 +122,8 @@ class PopcornTV:
             match=re.compile('src="/player/ova.asp\?q=(.+?)"').findall(htmlData)
             url = match[0]
             url = url.replace("xxxzzz", "&")
-
+            url = url.replace(" ", "%20")
+        
         return url
         
     def getVideoURL(self, smilUrl):
