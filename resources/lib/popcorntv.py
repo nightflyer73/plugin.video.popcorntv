@@ -1,6 +1,7 @@
 import sys
 import urllib
 import urllib2
+import urlparse
 import httplib
 import re
 from BeautifulSoup import BeautifulSoup
@@ -117,3 +118,10 @@ class PopcornTV:
 
         return url
 
+    def getAndroidVideoURL(self, smilUrl):
+        params = dict(urlparse.parse_qsl(smilUrl))
+        file = params['file']
+        url = "http://www.popcorntv.it/android/m3u8.php?file=" + file
+        
+        return url
+        
