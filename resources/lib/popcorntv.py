@@ -43,6 +43,18 @@ class PopcornTV:
         urlSite = urlParsed.scheme + "://" + urlParsed.netloc
 
         subcategories = []
+        
+        # add SIMULCAST in ANIME MANGA
+        if pageUrl == "http://animemanga.popcorntv.it/":
+            links = htmlTree.find("div", "nav3").findAll("a")
+            for link in links:
+                subcategory = {}
+                subcategory["url"] = link["href"]
+                if not subcategory["url"].startswith("http"):
+                    subcategory["url"] = urlSite + subcategory["url"]
+                subcategory["title"] = "[COLOR yellow]" + link.contents[0].strip() + "[/COLOR]"
+                subcategories.append(subcategory)
+        
         links = htmlTree.find("div", "nav2").findAll("a")
         # There are no video in these subcategories
         avoid_subcategories = ["News"]
