@@ -1,3 +1,9 @@
+[B]1.0.4[/B]
+- added SIMULCAST in ANIME MANGA
+- updated page parsing because of upstream HTML changes
+- now using Android streams
+- authetication needed for VM18 streams is not yet implemented
+
 [B]1.0.3[/B]
 - filtered out the "Videostrillo" and the "Fox TV" categories.
 
