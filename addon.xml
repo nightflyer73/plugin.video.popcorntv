@@ -4,7 +4,7 @@
        version="1.0.4"
        provider-name="Nightflyer">
   <requires>
-    <import addon="xbmc.python" version="1.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.0.8"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
@@ -19,6 +19,7 @@
     <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
     <forum>http://forum.xbmc.org/showthread.php?tid=155915</forum>
     <website>https://github.com/nightflyer73/plugin.video.popcorntv</website>
+    <email></email>
     <source>https://github.com/nightflyer73/plugin.video.popcorntv</source>
   </extension>
 </addon>
