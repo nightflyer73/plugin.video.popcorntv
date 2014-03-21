@@ -127,14 +127,8 @@ class PopcornTV:
     def getSmilUrl(self, pageUrl):
         htmlData = urllib2.urlopen(pageUrl).read()
         
-        try:
-            match=re.compile('url: escape\("(.+?)"\)').findall(htmlData)
-            url = match[0]
-        except IndexError:
-            match=re.compile('src="/player/ova.asp\?q=(.+?)"').findall(htmlData)
-            url = match[0]
-            url = url.replace("xxxzzz", "&")
-            url = url.replace(" ", "%20")
+        match=re.compile('PlayVideo\("vplayer","768","432","","(.+?)"').findall(htmlData)
+        url = match[0]
         
         return url
         
@@ -145,7 +139,7 @@ class PopcornTV:
         base = htmlTree.find('meta')['base']
         filepath = htmlTree.find('video')['src']
         url = base + " playpath=" + filepath
-
+        
         return url
 
     def getAndroidVideoURL(self, smilUrl):
@@ -154,4 +148,4 @@ class PopcornTV:
         url = "http://www.popcorntv.it/android/m3u8.php?file=" + file
         
         return url
-        
+    
