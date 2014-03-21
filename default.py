@@ -63,6 +63,7 @@ def show_video_files(url):
 
 def play_video(url):
     popcorntv = PopcornTV()
+    #video_url = popcorntv.getVideoURL(popcorntv.getSmilUrl(url))
     video_url = popcorntv.getAndroidVideoURL(popcorntv.getSmilUrl(url))
     xbmc.Player().play(video_url)
     
