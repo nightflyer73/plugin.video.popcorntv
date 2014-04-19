@@ -127,7 +127,7 @@ class PopcornTV:
     def getSmilUrl(self, pageUrl):
         htmlData = urllib2.urlopen(pageUrl).read()
         
-        match=re.compile('PlayVideo\("vplayer","768","432","","(.+?)"').findall(htmlData)
+        match=re.compile('PlayVideoDettaglio\("vplayer","768","432","(.+?)"').findall(htmlData)
         url = match[0]
         
         return url
