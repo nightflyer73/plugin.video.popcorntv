@@ -1,3 +1,6 @@
+[B]1.0.7[/B]
+- added English description and summary in addon.xml
+
 [B]1.0.6[/B]
 - updated page parsing because of upstream HTML changes
 
