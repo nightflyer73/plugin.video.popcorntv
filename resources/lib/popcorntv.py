@@ -1,8 +1,5 @@
-import sys
-import urllib
 import urllib2
 import urlparse
-import httplib
 import re
 from BeautifulSoup import BeautifulSoup
 from BeautifulSoup import BeautifulStoneSoup
