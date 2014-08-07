@@ -122,6 +122,10 @@ class PopcornTV:
         return videos
 
     def getSmilUrl(self, pageUrl):
+        # data = urllib2.urlopen(pageUrl).read()
+        # htmlTree = BeautifulSoup(data, convertEntities=BeautifulSoup.HTML_ENTITIES)
+        
+        # url = htmlTree.find('meta', {"property": "og:video"})['content']
         htmlData = urllib2.urlopen(pageUrl).read()
         
         match=re.compile('PlayVideoEngineV2\("vplayer","768","432","(.+?)"').findall(htmlData)
