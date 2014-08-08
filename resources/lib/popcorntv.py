@@ -121,17 +121,25 @@ class PopcornTV:
         
         return videos
 
-    def getSmilUrl(self, pageUrl):
-        # data = urllib2.urlopen(pageUrl).read()
-        # htmlTree = BeautifulSoup(data, convertEntities=BeautifulSoup.HTML_ENTITIES)
+    def getVideoMetadata(self, pageUrl):
+        metadata = {}
         
-        # url = htmlTree.find('meta', {"property": "og:video"})['content']
-        htmlData = urllib2.urlopen(pageUrl).read()
+        data = urllib2.urlopen(pageUrl).read()
+        htmlTree = BeautifulSoup(data, convertEntities=BeautifulSoup.HTML_ENTITIES)
         
-        match=re.compile('PlayVideoEngineV2\("vplayer","768","432","(.+?)"').findall(htmlData)
-        url = match[0].replace(" ","")
+        metadata["title"] = htmlTree.find('meta', {"property": "og:title"})['content']
+        metadata["thumb"] = htmlTree.find('meta', {"property": "og:image"})['content']
+        metadata["plot"] = htmlTree.find('meta', {"property": "og:description"})['content']
+        try:
+            # Not all the pages have the following metadata yet!
+            metadata["smilUrl"] = htmlTree.find('meta', {"property": "og:video"})['content']
+        except TypeError:
+            match=re.compile('\("vplayer","768","432","(.+?)"').findall(data)
+            metadata["smilUrl"] = match[0]
+        # Remove spaces from smil URL
+        metadata["smilUrl"] = metadata["smilUrl"].replace(" ","")
         
-        return url
+        return metadata
         
     def getVideoURL(self, smilUrl):
         data = urllib2.urlopen(smilUrl).read()
