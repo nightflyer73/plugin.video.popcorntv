@@ -151,10 +151,3 @@ class PopcornTV:
         
         return url
 
-    def getAndroidVideoURL(self, smilUrl):
-        params = dict(urlparse.parse_qsl(smilUrl))
-        file = params['file']
-        url = "http://www.popcorntv.it/android/m3u8.php?file=" + file
-        
-        return url
-    

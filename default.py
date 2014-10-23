@@ -64,8 +64,7 @@ def show_video_files(url):
 def play_video(url):
     popcorntv = PopcornTV()
     metadata = popcorntv.getVideoMetadata(url)
-    #video_url = popcorntv.getVideoURL(metadata["smilUrl"])
-    video_url = popcorntv.getAndroidVideoURL(metadata["smilUrl"])
+    video_url = popcorntv.getVideoURL(metadata["smilUrl"])
     liStyle=xbmcgui.ListItem(metadata["title"], thumbnailImage=metadata["thumb"])
     xbmc.Player().play(video_url, liStyle)
     
