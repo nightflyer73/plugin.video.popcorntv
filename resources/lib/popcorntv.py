@@ -55,10 +55,11 @@ class PopcornTV:
     def getVideoBySubCategories(self, pageUrl):
         data = urllib2.urlopen(pageUrl).read()
         htmlTree = BeautifulSoup(data, convertEntities=BeautifulSoup.HTML_ENTITIES)
+        urlParsed = urlparse.urlsplit(pageUrl)
         
         videoList = []
         
-        if pageUrl.startswith("http://cinema.popcorntv.it"):
+        if urlParsed.netloc == "cinema.popcorntv.it":
             # Show video in "Lista film"
             items = htmlTree.find("div", "row lista-episodi").findAll("a")
         else:
