@@ -71,6 +71,8 @@ class PopcornTV:
             video["title"] = item["title"].strip()
             video["url"] = item["href"]
             video["thumb"] = item.find("img")["src"]
+            if video["thumb"].startswith("//"):
+                video["thumb"] = urlParsed.scheme +":" + video["thumb"]
             videoList.append(video)
             
         # Get pagination URLs
