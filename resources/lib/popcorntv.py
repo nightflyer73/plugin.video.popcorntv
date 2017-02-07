@@ -44,7 +44,7 @@ class PopcornTV:
             subcategory = {}
             subcategory["title"] = link.text.strip()
             subcategory["url"] = link["href"]
-            if not subcategory["url"].startswith("http"):
+            if subcategory["url"].startswith("/"):
                 subcategory["url"] = urlSite + subcategory["url"]
             # Don't insert duplicate items
             if subcategory not in subcategories:
