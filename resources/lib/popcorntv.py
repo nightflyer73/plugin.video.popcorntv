@@ -5,7 +5,7 @@ from BeautifulSoup import BeautifulSoup
 from BeautifulSoup import BeautifulStoneSoup
 
 class PopcornTV:
-    __USERAGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0"
+    __USERAGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:51.0) Gecko/20100101 Firefox/51.0"
 
     def __init__(self):
         opener = urllib2.build_opener()
