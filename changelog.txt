@@ -1,5 +1,9 @@
-[B]1.0.16[/B]
+[B]1.0.17[/B]
 - Updated page parsing because of upstream HTML changes.
+
+[B]1.0.16[/B]
+- This addon now requires youtube addon.
+- Updates will be available only for krypton and higher.
 
 [B]1.0.15[/B]
 - Updated page parsing because of upstream HTML changes.
