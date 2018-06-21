@@ -61,16 +61,19 @@ def show_video_files(url):
     page = popcorntv.getVideoBySubCategories(url)
     
     for video in page["videoList"]:
-        liStyle=xbmcgui.ListItem(video["title"], thumbnailImage=video["thumb"])
+        liStyle=xbmcgui.ListItem(video["title"])
+        liStyle.setArt({"thumb": video["thumb"]})
         liStyle.setInfo('video', {"Plot": video["plot"]})
         addLinkItem({"mode": "video", "url": video["url"]}, liStyle)
               
     if page["prevPageUrl"] is not None:
-        liStyle=xbmcgui.ListItem("< Prev Page", iconImage = "DefaultFolder.png")
+        liStyle=xbmcgui.ListItem("< Precedente")
+        liStyle.setArt({"icon": "DefaultFolder.png"})
         addDirectoryItem({"mode": "list", "url": page["prevPageUrl"]}, liStyle)
         
     if page["nextPageUrl"] is not None:
-        liStyle=xbmcgui.ListItem("> Next Page", iconImage = "DefaultFolder.png")
+        liStyle=xbmcgui.ListItem("> Successivo")
+        liStyle.setArt({"icon": "DefaultFolder.png"})
         addDirectoryItem({"mode": "list", "url": page["nextPageUrl"]}, liStyle)
         
     xbmcplugin.endOfDirectory(handle=handle, succeeded=True)
